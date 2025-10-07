@@ -1,4 +1,4 @@
-# 🏏 IPL 2025 Squad Analytics with Historical Trends (2008–2025) – A Power BI Exploration
+# 🏏IPL 2025 Squad Analytics with Historical Trends (2008–2025) – A Power BI Exploration
 
 [![View Dashboard](https://img.shields.io/badge/View%20Dashboard-%23000000.svg?style=for-the-badge&logo=Codeforces&logoColor=gold)](https://app.powerbi.com/view?r=eyJrIjoiMDYyZGU5OWItZjliMC00NjE5LWFhMmEtMGI1OGZkMDE4NTJhIiwidCI6IjQ2NTRiNmYxLTBlNDctNDU3OS1hOGExLTAyZmU5ZDk0M2M3YiIsImMiOjl9)
 
@@ -233,7 +233,7 @@ The data model was designed in Power BI using a star schema with multiple fact a
 
 - ball_by_ball_data → Detailed ball-by-ball records.
 
-- bibb_bowler → Bowling stats by match.
+- bbb_bowler → Bowling stats by match.
 
 - All_Matches_Score → Live fixture & results from API.
 
@@ -297,7 +297,7 @@ $\textsf{\color{blue}{Power BI: View Created Dax Measures, Columns, Tables ➡�
 
 **Overview IPL KPI's**
 
-Some measures are provide here If You want more DOwnload the EXcel File Above
+Some measures are provide here If You want more Download the Excel File Above [Click Here]
 
 ```
 Total_matches = CALCULATE(DISTINCTCOUNT(ipl_matches_data[match_id]))
