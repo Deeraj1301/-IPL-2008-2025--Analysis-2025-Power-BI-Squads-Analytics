@@ -1,4 +1,4 @@
-# 🏏 IPL (2008-2025)-Analysis & 2025 - Power BI Squads Analytics
+# 🏏 IPL 2025 Squad Analytics with Historical Trends (2008–2025) – A Power BI Exploration
 
 [![View Dashboard](https://img.shields.io/badge/View%20Dashboard-%23000000.svg?style=for-the-badge&logo=Codeforces&logoColor=gold)](https://app.powerbi.com/view?r=eyJrIjoiMDYyZGU5OWItZjliMC00NjE5LWFhMmEtMGI1OGZkMDE4NTJhIiwidCI6IjQ2NTRiNmYxLTBlNDctNDU3OS1hOGExLTAyZmU5ZDk0M2M3YiIsImMiOjl9)
 
@@ -272,7 +272,7 @@ $\textsf{\color{blue}{Power BI: View Created Dax Measures, Columns, Tables ➡�
 </summary><br>
 
 **Measures:**
-**🏏 IPL (2008-2025)-Analysis & 2025 – Power BI Squads Analytics**
+**🏏 IPL 2025 Squad Analytics with Historical Trends (2008–2025) – A Power BI Exploration**
 
 **Overview IPL KPI's**
 
