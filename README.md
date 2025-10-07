@@ -371,20 +371,20 @@ $\textsf{\color{blue}{View Images ➡️}}$
 
 > ### 3. Season 2025 page 
 
-> <img width="1306" height="737" alt="Image" src="https://github.com/user-attachments/assets/3404d63e-047b-46a9-ae4a-c3523e2fdce7" />
-
 - Live Fixtures & Results – Track ongoing and completed matches.
 - Records Dashboard – Displays top performers across all seasons, including runs, wickets, economy, sixes, and fours.
 - Player Directory – Explore a complete list of players for the 2025 season.
 
-> ### 3. Squads Of 2025 Page
+> <img width="1306" height="737" alt="Image" src="https://github.com/user-attachments/assets/3404d63e-047b-46a9-ae4a-c3523e2fdce7" />
 
-><img width="1298" height="742" alt="Image" src="https://github.com/user-attachments/assets/4f44a34f-e7a1-4ec4-9fc2-2ddd9a592c8a" />
+> ### 3. Squads Of 2025 Page
 
 - Team Squads – View all player squads with profile images and team logos.
 - Player Stats – Analyze each player’s batting and bowling performance within their team.
 - Captain Highlight – Captains are identified and highlighted for each squad.
 - Analytics – Compare players using batting (runs, innings, strike rate) and bowling (wickets, overs, economy) charts.
+
+> <img width="1298" height="742" alt="Image" src="https://github.com/user-attachments/assets/4f44a34f-e7a1-4ec4-9fc2-2ddd9a592c8a" />
 
 </details>
 
