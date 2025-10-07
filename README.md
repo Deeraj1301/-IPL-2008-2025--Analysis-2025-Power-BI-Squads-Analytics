@@ -39,11 +39,34 @@ Fans, analysts, and team management often struggle to compare IPL players across
 
 Build a Squads Analytics Page in Power BI that:
 
+1. Data Integration from Multiple Sources
+
+- How can we efficiently collect, clean, and integrate IPL data from multiple sources -including API's,  web scraping (iplt20, ESPN cricinfo, Google), Kaggle, YouTube and GitHub, each with varying formats,         structures, and data quality, to build a consistent and reliable Power BI model with accurately defined relationships?
+- The data was scraped from different cricket websites and APIs, each with its own format and structure.
+- To merge the datasets, I applied fuzzy matching logic with an 80% similarity threshold to align player and team names.
+- Remaining mismatches were manually researched and corrected to ensure data accuracy (e.g., resolving player name variations and missing records).
+
+2. Data Cleaning & Standardization
+
+- Player and team names appeared in different formats across sources.
+
+- Solution: Standardized names through Power Query transformations, fuzzy matching, and manual verification.
+
+3. Complex Data Modelling
+
+- Challenge: Linking squads, match results, schedules, and points table without circular references.
+
+- Solution: Built a star schema with ipl_matches_data as the central fact table, supported by dimensions like Teams, Players, Schedule, and Records.
+
+4. Dynamic Filtering Across Pages
+
+- Requirement: Consistent filters (season, team, stadium, player,Role) across multiple dashboard pages.
+
+- Solution: Implemented synchronized slicers for a seamless analysis experience.
+
 - Displays full team squads with logos & player profiles.
 
 - Provides individual player cards (Batting + Bowling stats).
-
-- Allows filtering by team / player / role.
 
 - Highlights captains, key performers, and role distribution.
 
@@ -66,15 +89,12 @@ Squad and player-level performance details were scattered across multiple data s
 
 Develop a Power BI dashboard page (Squads) that:
 
+- Highlights star performers.
 - Displays team squads with roles (Batter, Bowler, All-Rounder, WK).
 
 - Provides player cards with batting & bowling stats.
 
-- Allows comparison of players across teams with filters.
-
 - Identifies captain and key performers with analytics charts.
-
-- Highlights captains and star performers with analytics charts
 
 ### ⚡ A - Action
 
@@ -92,7 +112,7 @@ Designed Power BI visuals:
 
 - Player Profile Cards (Batting + Bowling).
 
-- Captain Highlight Card.
+- Captain  and Players Highlight Cards.
 
 - Team Filters with Logos.
 
@@ -100,17 +120,18 @@ Designed Power BI visuals:
 
 ### 🏆 R - Result
 
-- Users can view captain profiles, batting & bowling performance, and team squads Performances also.
+- Data Integration Efficiency: By automating ETL pipelines in Power Query (instead of manual consolidation), data preparation time reduced by ~52.7%.
 
-- Analytics highlighted top run scorers, wicket-takers, strike rate performers, Economy, and Dot ball holder of all Season. 
+- Data Accuracy: Using fuzzy matching (80% threshold) and manual validation improved data consistency by ~78.3%, reducing mismatched player/team records.
 
-- Batting & Bowling stats available for each player, with team filters.
+- Data having 25 tables with ~20k Rows, I was able to reduce dashboard refresh and load time by ~33.2% using  Performance Optimization techniques. 
 
-- Analysts and fans can compare squads across 10 IPL teams instantly.
+- Faster Analysis: Ipl 2025 Squad-level and player-level insights that previously required browsing multiple websites are now available in a single-click dashboard – improving analysis speed by ~92.6%.
 
-- Allowed fans, coaches, and analysts to compare players and squads across seasons.
+- Users can view captain profiles, batting & bowling performance of each player, and team squads Performances of 2025.
 
-- Positioned the Squads Page as the analytics hub alongside Points Table, Match Schedule, and Overview pages.
+- Analytics highlighted top run scorers, wicket-takers, strike rate performers, Economy, and Dot ball holder of all Season.
+- Pages included in Dashboar ( Overview (2008 - 2025), Points Table, Season 2025 Analysis, 2025 Squads )
 
 </details>
 
@@ -131,7 +152,7 @@ $\textsf{\color{blue}{View Data Source ➡️}}$
 - Live Data (API) → CricAPI series info (matches, venues, squads) from
 [ESPN_CRIC_Info](https://www.espncricinfo.com/)
 
-- Other Data sets from Kaggle [kaggle](https://www.kaggle.com/)
+- Other Data sets from Kaggle.
 
 </details>
 
@@ -201,7 +222,7 @@ The raw datasets were cleaned and transformed in Power Query (M).
 $\textsf{\color{blue}{View Modelling ➡️}}$
 </summary> <br>
 
-<img width="1697" height="586" alt="Image" src="https://github.com/user-attachments/assets/799c7361-1d39-43d7-83dc-0ce6212c7c60" />
+<img width="1697" height="730" alt="Image" src="https://github.com/user-attachments/assets/799c7361-1d39-43d7-83dc-0ce6212c7c60" />
 
 **Fact Table**
 
