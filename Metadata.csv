@@ -1,0 +1,1250 @@
+﻿Type,Name,Location,Expression
+Column,'-,Schedule,
+Column,100,2025_batters,
+Column,4s,2025_batters,
+Column,4W,2025_bowlers,
+Column,50,2025_batters,
+Column,5W,2025_bowlers,
+Column,6s,2025_batters,
+Column,Age,Players,
+Column,apikey,All_Matches_Score,
+Column,Avg,2025_batters,
+Column,Avg,2025_bowlers,
+Column,ball_number,ball_by_ball_data,
+Column,balls_per_over,ipl_matches_data,
+Column,bat_style,players_data,
+Column,batsman_type,ball_by_ball_data,
+Column,batter,ball_by_ball_data,
+Column,batter_runs,ball_by_ball_data,
+Column,BattingStyle,Players,
+Column,BBI,2025_bowlers,
+Column,BF,2025_batters,
+Column,bowl_style,players_data,
+Column,bowler,ball_by_ball_data,
+Column,bowler_type,ball_by_ball_data,
+Column,BowlingStyle,Players,
+Column,bye_runs,ball_by_ball_data,
+Column,Cap,Players,
+Column,Cards_HW,ipl_matches_data,"
+""
+<div class='match-card'>
+    <div class='match-header'>
+        <span><a href='#' class='venue'>"" & ipl_matches_data[venue] & ""</a></span>
+    </div>
+    <div class='time' style='padding-top:5px;'>"" & FORMAT(ipl_matches_data[match_date],""dd-mmm-yyyy"") & ""</div>
+    <div class='teams'>
+        <img src='"" & ipl_matches_data[Team1_image] & ""' class='team-logo'>
+        "" & ipl_matches_data[team1] & ""
+    </div>
+    <div class='teams'>
+        <img src='"" & ipl_matches_data[Team2_image] & ""' class='team-logo'>
+        "" & ipl_matches_data[team2] & ""
+    </div>
+    <div class='status' style='text-align:center;'>"" & ipl_matches_data[result] & ""</div>
+</div>
+<hr style='border: 0; border-top: 1px solid #555; margin: 10px 20px;' />
+"""
+Column,Cards_HW,Schedule,"
+""
+<div class='match-card'>
+    <div class='match-header'>
+        <span><a href='#' class='venue'>"" & Schedule[Location] & ""</a></span>
+    </div>
+    <div class='time' style='padding-top:5px;'>"" & FORMAT(Schedule[dateTimeGMT],""dd-mmm-yyyy, hh:mm AM/PM"") & ""</div>
+    <div class='teams'>
+        <img src='"" & Schedule[Team1_Logo] & ""' class='team-logo'>
+        "" & Schedule[Team1] & "" ("" & Schedule[Team1_SN] & "")
+    </div>
+    <div class='teams'>
+        <img src='"" & Schedule[Team2_Logo] & ""' class='team-logo'>
+        "" & Schedule[Team2] & "" ("" & Schedule[Team2_SN] & "")
+    </div>
+    <div class='status' style='text-align:center;'>"" & Schedule[Status] & ""</div>
+</div>
+<hr style='border: 0; border-top: 1px solid #555; margin: 10px 20px;' />
+""
+"
+Column,Category,Players,
+Column,city,ipl_matches_data,
+Column,city,Match_Schedule,
+Column,Column,_Measures,
+Column,Date,Match_Schedule,
+Column,Date,Schedule,
+Column,dateTimeGMT,All_Matches_Score,
+Column,dateTimeGMT,Schedule,
+Column,ECON,2025_bowlers,
+Column,event_name,ipl_matches_data,
+Column,extras,ball_by_ball_data,
+Column,field_pos,players_data,
+Column,fielders_involved,ball_by_ball_data,
+Column,format,ipl_matches_data,
+Column,gender,ipl_matches_data,
+Column,High Score,2025_batters,
+Column,HS,2025_batters,
+Column,id,All_Matches_Score,
+Column,image_url,teams_data,
+Column,IMG,2025_batters,
+Column,IMG,2025_bowlers,
+Column,IMG,Records,
+Column,Inngs,2025_batters,
+Column,Inngs,2025_bowlers,
+Column,innings,ball_by_ball_data,
+Column,is_bye,ball_by_ball_data,
+Column,is_leg_bye,ball_by_ball_data,
+Column,is_no_ball,ball_by_ball_data,
+Column,is_penalty,ball_by_ball_data,
+Column,is_super_over,ball_by_ball_data,
+Column,is_wicket,ball_by_ball_data,
+Column,is_wide_ball,ball_by_ball_data,
+Column,leg_bye_runs,ball_by_ball_data,
+Column,Link,HightLights,
+Column,Location,Schedule,
+Column,Logo,2025_bowlers,
+Column,Logo,Players,
+Column,Logo,Point_Table,
+Column,Logo,Records,
+Column,Logo,Team_Wins,
+Column,LOSE,Point_Table,
+Column,Mat,2025_batters,
+Column,Mat,2025_bowlers,
+Column,match no,Match_Schedule,
+Column,Match_Card_HTML,Match_Schedule,"
+VAR MonthText = UPPER(FORMAT([date], ""MMM""))
+VAR WeekdayAbbr = UPPER(LEFT(FORMAT([date], ""dddd"")))
+VAR MatchDate = MonthText & "", "" & WeekdayAbbr & "" ""
+
+RETURN
+""
+<div class='match-card'>
+
+    <div class='match-header'>
+        <div class='match-venue-date'>
+            <div class='match-venue'>"" & [stadium] & "" "" & [city] & ""</div>
+            <div class='match-date'>"" & UPPER(FORMAT([date], ""MMM, ddd d"")) & ""</div>
+                 <div class='match-tag'>"" & 
+                                SWITCH(
+                                 TRUE(),
+                                    [match no] = ""Final"", ""FINAL"",
+                                     [match no] = ""Qualifier 1"", ""QUALIFIER 1"",
+                                        [match no] = ""Eliminator"", ""ELIMINATOR"",
+                                         [match no] = ""Qualifier 2"", ""QUALIFIER 2"",
+                                              [match no]
+                                ) 
+                                        & ""</div>
+    </div>
+
+    <div class='teams-container'>
+        <div class='team-box'>
+            <img src='"" & Match_Schedule[Team1_logo ] & ""' class='team-logo' />
+            <div class='team-name'>"" & [Team1] & ""</div>
+            <div class='team-score'>"" & [Team1_Score] & ""</div>
+            <div class='team-overs'>"" & [Team1_overs] & ""</div>
+        </div>
+
+        <div class='vs-divider'>V/S</div>
+
+        <div class='team-box'>
+            <img src='"" & [Team2_logo] & ""' class='team-logo' />
+            <div class='team-name'>"" & [Team2] & ""</div>
+            <div class='team-score'>"" & [Team2_Score] & ""</div>
+            <div class='team-overs'>"" & [Team2_Overs] & ""</div>
+        </div>
+    </div>
+
+    <div class='match-footer'>
+        <div class='match-status'>"" & [Result] & ""</div>
+    </div>
+
+</div>
+<hr style='border: 0; border-top: 1px solid #dadada;' />
+"""
+Column,match_date,ipl_matches_data,
+Column,match_id,ball_by_ball_data,
+Column,match_id,ipl_matches_data,
+Column,match_number,ipl_matches_data,
+Column,match_number,Schedule,
+Column,Match_Sort_Order,Match_Schedule,"
+SWITCH(TRUE(),
+    'Match_Schedule'[match no] = ""Final"", 1000,
+    'Match_Schedule'[match no] = ""Qualifier 2"", 999,
+    'Match_Schedule'[match no] = ""Eliminator"", 998,
+    'Match_Schedule'[match no] = ""Qualifier 1"", 997,
+    LEFT('Match_Schedule'[match no], 5) = ""Match"", 
+        VALUE(RIGHT('Match_Schedule'[match no], LEN('Match_Schedule'[match no]) - 6)),
+    BLANK()
+)"
+Column,match_type,ipl_matches_data,
+Column,match_winner,ipl_matches_data,
+Column,MATCHES,Point_Table,
+Column,matchType,All_Matches_Score,
+Column,ms,All_Matches_Score,
+Column,Name,2025_batters,
+Column,Name,2025_bowlers,
+Column,Name,Records,
+Column,Name,Schedule,
+Column,No,2025_batters,
+Column,no_ball_runs,ball_by_ball_data,
+Column,non_striker,ball_by_ball_data,
+Column,NRR,Point_Table,
+Column,Ov,2025_bowlers,
+Column,over_number,ball_by_ball_data,
+Column,overs,ipl_matches_data,
+Column,penalty_runs,ball_by_ball_data,
+Column,player_full_name,players_data,
+Column,player_id,players_data,
+Column,player_image,players_data,
+Column,player_name,players_data,
+Column,player_name2,players_data,
+Column,player_of_match,ipl_matches_data,
+Column,player_out,ball_by_ball_data,
+Column,PlayerIMG,Players,
+Column,PlayerName,Players,
+Column,PlayerURL,Players,
+Column,POINTS,Point_Table,
+Column,Position,2025_batters,
+Column,Position,2025_bowlers,
+Column,Position,Point_Table,
+Column,Position,Records,
+Column,Refresh,RefreshTable,
+Column,result,ipl_matches_data,
+Column,result,Match_Schedule,
+Column,Results_Cards,Schedule,"
+""
+<div class='match-card'>
+    <div class='time'>""&FORMAT(Schedule[dateTimeGMT],""dd-mmm, hh:mm AM/PM"")&""</div>
+    <div class='venue'>""&Schedule[Location]&""</div>
+    <div class='teams'>
+        <img src='""&Schedule[Team1_Logo]&""' class='team-logo'>
+        ""&Schedule[Team1]&""
+    </div>
+    <div class='teams'>
+        <img src='""&Schedule[Team2_Logo]&""' class='team-logo'>
+        ""&Schedule[Team2]&""
+    </div>
+    <div class='status'>""&Schedule[Status]&""</div>
+</div>
+"""
+Column,Runs,2025_batters,
+Column,Runs,2025_bowlers,
+Column,Score_Cards,All_Matches_Score,"
+""
+<div class='card'>
+        <div class='header'>"" & All_Matches_Score[ms] & "" • "" & All_Matches_Score[matchType] & "" • Starts: "" & FORMAT(All_Matches_Score[dateTimeGMT],""d-mmm-yy @ hh:mmAM/PM"") & ""</div>
+        <div class='teams'>
+            <div class='team'>
+                <img src='"" & All_Matches_Score[t1img] & ""'>
+                "" & All_Matches_Score[t1_SN] & ""
+            </div>
+            <div class='score'>"" & All_Matches_Score[t1s] & ""</div>
+        </div>
+        <div class='teams'>
+            <div class='team'>
+                <img src='"" & All_Matches_Score[t2img] & ""'>
+                "" & All_Matches_Score[t2_SN] & ""
+            </div>
+            <div class='score'>"" & All_Matches_Score[t2s] & ""</div>
+        </div>
+        <div class='status'>"" & All_Matches_Score[status] & ""</div>
+    </div>
+"""
+Column,season,HightLights,
+Column,season,ipl_matches_data,
+Column,season,Match_Schedule,
+Column,season,Point_Table,
+Column,season_id,ball_by_ball_data,
+Column,season_id,ipl_matches_data,
+Column,season_id,Point_Table,
+Column,series,All_Matches_Score,
+Column,SR,2025_batters,
+Column,SR,2025_bowlers,
+Column,stadium,Match_Schedule,
+Column,Stadium LOC,Match_Schedule,
+Column,status,All_Matches_Score,
+Column,status,Schedule,
+Column,t1,All_Matches_Score,
+Column,t1_SN,All_Matches_Score,
+Column,t1img,All_Matches_Score,
+Column,t1s,All_Matches_Score,
+Column,t2,All_Matches_Score,
+Column,t2_SN,All_Matches_Score,
+Column,t2img,All_Matches_Score,
+Column,t2s,All_Matches_Score,
+Column,Team,2025_batters,
+Column,Team,2025_bowlers,
+Column,Team,Players,
+Column,Team,Point_Table,
+Column,Team,Records,
+Column,Team,Team_Wins,
+Column,team_batting,ball_by_ball_data,
+Column,team_bowling,ball_by_ball_data,
+Column,team_id,teams_data,
+Column,Team_Logo,2025_batters,
+Column,team_name,teams_data,
+Column,team_name_short,teams_data,
+Column,Team_SN,Players,
+Column,Team_SN,Records,
+Column,Team_SN,Team_Wins,
+Column,team_type,ipl_matches_data,
+Column,Team1,ipl_matches_data,
+Column,Team1,Match_Schedule,
+Column,Team1,Schedule,
+Column,Team1_image,ipl_matches_data,
+Column,Team1_Logo,Schedule,
+Column,Team1_logo ,Match_Schedule,
+Column,Team1_overs,Match_Schedule,
+Column,Team1_Score,Match_Schedule,
+Column,Team1_SN,ipl_matches_data,
+Column,Team1_SN,Match_Schedule,
+Column,Team1_SN,Schedule,
+Column,Team2,ipl_matches_data,
+Column,Team2,Match_Schedule,
+Column,Team2,Schedule,
+Column,Team2_image,ipl_matches_data,
+Column,Team2_Logo,Match_Schedule,
+Column,Team2_Logo,Schedule,
+Column,Team2_Overs,Match_Schedule,
+Column,Team2_Score,Match_Schedule,
+Column,Team2_SN,ipl_matches_data,
+Column,Team2_SN,Match_Schedule,
+Column,Team2_SN,Schedule,
+Column,TIE,Point_Table,
+Column,Top_Players,Records,"""
+    <div class='card'>
+        <div class='card-header'>""&Records[Type]&""</div>
+        <img class='player-img' src='""&Records[IMG]&""' alt='image'>
+        <div class='player-info'>
+            <div class='player-name'>""&Records[Name]&""</div>
+            <div class='stats'>""&Records[Value]&""</div>
+            <div class='label'>""&Records[Type]&""</div>
+        </div>
+        <div class='footer'>1st Position </div>
+    </div>
+"""
+Column,toss_decision,ipl_matches_data,
+Column,toss_winner,ipl_matches_data,
+Column,total_runs,ball_by_ball_data,
+Column,Trophy,Team_Wins,
+Column,Type,Players,
+Column,Type,Records,
+Column,Type,Schedule,
+Column,URL,2025_batters,
+Column,URL,2025_bowlers,
+Column,URL,Records,
+Column,URL,Team_Wins,
+Column,Value,Records,
+Column,venue,ipl_matches_data,
+Column,wicket_kind,ball_by_ball_data,
+Column,Wickets,2025_bowlers,
+Column,wide_ball_runs,ball_by_ball_data,
+Column,win_by_runs,ipl_matches_data,
+Column,win_by_wickets,ipl_matches_data,
+Column,WINS,Point_Table,
+Column,Year,Team_Wins,
+Measure,Best Economy Bowler Image,_Measures,"
+VAR BestBowler =
+    [Best Economy Bowler Name]   // this is  measure that already applies the 3+ overs filter
+RETURN
+    CALCULATE (
+        MAX (players_data[player_image] ),
+        players_data[player_name] = BestBowler
+    )
+"
+Measure,Best Economy Bowler Name,_Measures,"
+VAR BestVal = [Best Economy Value]
+RETURN
+MAXX (
+    FILTER (
+        VALUES ( ball_by_ball_data[bowler] ),
+        [Economy Rate] = BestVal
+            && CALCULATE ( [Legal Balls Bowled] ) >= 18
+    ),
+    ball_by_ball_data[bowler]
+)"
+Measure,Best Economy Bowler Team,_Measures,"
+VAR BestBowler = [Best Economy Bowler Name]
+RETURN
+CALCULATE (
+    MAX ( ball_by_ball_data[team_bowling] ),
+    KEEPFILTERS ( ball_by_ball_data[bowler] = BestBowler )
+)"
+Measure,Best Economy Value,_Measures,"
+MINX (
+    FILTER (
+        VALUES ( ball_by_ball_data[bowler] ),
+        CALCULATE ( [Legal Balls Bowled] ) >= 18   -- at least 3 overs
+    ),
+    [Economy Rate]
+)"
+Measure,BG_Records_Color,_Measures,"
+var Or_Img = ""#ff481e""
+var Pu_Img = ""#692f9e""
+var De_Img = ""#0d1e49""
+RETURN SWITCH(SELECTEDVALUE(Records[Type]),""Orange Cap"",Or_Img,""Most Wickets"",Pu_Img,De_Img)"
+Measure,BG_Records_IMG,_Measures,"
+var Or_Img = ""https://i.ibb.co/27H0YCzW/Oragne.png""
+var Pu_Img = ""https://i.ibb.co/7xBjt7f2/Purple.png""
+var De_Img = ""https://i.ibb.co/ktsQkN0/Blue.png""
+VAR selectIMG = SWITCH(SELECTEDVALUE(Records[Type]),""Orange Cap"",Or_Img,""Most Wickets"",Pu_Img,De_Img)
+
+RETURN ""<img src='""&selectIMG&""' width='400'>
+"""
+Measure,Centuries,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+VAR SeasonData = FILTER(ball_by_ball_data,RELATED(ipl_matches_data[season]) = SelectedSeason)
+
+VAR BatterRuns = SUMMARIZE(SeasonData,ball_by_ball_data[match_id],ball_by_ball_data[batter], ""TotalRuns"" , SUM(ball_by_ball_data[batter_runs]))
+
+VAR CenturyCount = FILTER(BatterRuns, [TotalRuns] >= 100)
+
+RETURN COUNTROWS(CenturyCount)"
+Measure,CSS_Code_For_Live_Score_Cards,_Measures,"
+""
+body { 
+    font-family: Arial; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
+.card { 
+    background: white; 
+    padding: 15px; 
+    border-radius: 10px; 
+    width: 350px; 
+    margin-bottom: 10px; 
+}
+.header {
+    font-size: 14px; 
+    color: gray; 
+    font-weight: bold; 
+}
+.teams { 
+    display: flex; 
+    justify-content: space-between; 
+    margin: 10px 0; 
+}
+.team { 
+    display: flex; 
+    align-items: center; 
+    font-size: 16px; 
+    font-weight: bold; 
+}
+.team img { 
+    width: 25px; 
+    height: 25px; 
+    margin-right: 8px; 
+    border-radius: 50%; 
+}
+.score { 
+    font-size: 16px; 
+    font-weight: bold; 
+    color: #444; 
+}
+.status { 
+    font-size: 14px; 
+    color: gray; 
+    margin-top: 5px; 
+}
+.match-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    width: 240px;
+    border: solid 1px #B3B3B3;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.teams {
+    padding: 7px 0;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.team-logo {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+.match-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    width: 700px;
+    margin-bottom: 20px;
+}
+.match-header {
+    font-size: 14px;
+}
+.venue {
+    color: #0073e6;
+    text-decoration: none;
+}
+.team-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+.status {
+    font-size: 14px;
+    color: #555;
+}
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+        }
+        .card {
+            background: white;
+            width: 360px;
+            border-radius: 15px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .card-header {
+            background: linear-gradient(to bottom, #19398a, #061e59);
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .player-img {
+            width: 100%;
+            height: auto;
+        }
+        .player-info {
+            padding: 15px;
+        }
+        .player-name {
+            font-size: 25px;
+            font-weight: bold;
+            color: #222;
+        }
+        .stats {
+            font-size: 30px;
+            font-weight: bold;
+            color: #222;
+        }
+        .label {
+            font-size: 20px;
+            color: gray;
+        }
+        .footer {
+            border-top:solid 1px #DCDCDC;
+            background: #ffffff;
+            padding: 10px;
+            font-weight: bold;
+            color: #11141c;
+            cursor: pointer;
+        }
+"""
+Measure,DotBall_Count,_Measures,"
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+VAR SeasonDots = 
+    FILTER(
+        ball_by_ball_data,
+        RELATED(ipl_matches_data[season]) = SelectedSeason &&
+        ball_by_ball_data[total_runs] = 0 &&
+        ball_by_ball_data[is_wide_ball] = FALSE() &&
+        ball_by_ball_data[is_no_ball] = FALSE() &&
+        ball_by_ball_data[is_leg_bye] = FALSE() &&
+        ball_by_ball_data[is_bye] = FALSE() &&
+        ball_by_ball_data[is_penalty] = FALSE()
+    )
+
+VAR DotSummary = 
+    SUMMARIZE(
+        SeasonDots,
+        ball_by_ball_data[bowler],
+        ""DotCount"", COUNTROWS(
+            FILTER(
+                SeasonDots,
+                ball_by_ball_data[bowler] = EARLIER(ball_by_ball_data[bowler])
+            )
+        )
+    )
+
+VAR MaxDots = MAXX(DotSummary, [DotCount])
+
+RETURN MaxDots
+"
+Measure,DotBall_Holder,_Measures,"
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+-- Filter dot balls (no runs, no extras) for selected season
+VAR SeasonDots = 
+    FILTER(
+        ball_by_ball_data,
+        RELATED(ipl_matches_data[season]) = SelectedSeason &&
+        ball_by_ball_data[total_runs] = 0 &&
+        ball_by_ball_data[is_wide_ball] = FALSE() &&
+        ball_by_ball_data[is_no_ball] = FALSE() &&
+        ball_by_ball_data[is_leg_bye] = FALSE() &&
+        ball_by_ball_data[is_bye] = FALSE() &&
+        ball_by_ball_data[is_penalty] = FALSE()
+    )
+
+-- Summarize by bowler
+VAR DotSummary = 
+    SUMMARIZE(
+        SeasonDots,
+        ball_by_ball_data[bowler],
+        ""DotCount"", COUNTROWS(
+            FILTER(
+                SeasonDots,
+                ball_by_ball_data[bowler] = EARLIER(ball_by_ball_data[bowler])
+            )
+        )
+    )
+
+-- Max dot balls
+VAR MaxDots = MAXX(DotSummary, [DotCount])
+
+-- Get top bowler(s)
+VAR TopDotBowler = 
+    CALCULATETABLE(
+        VALUES(ball_by_ball_data[bowler]),
+        FILTER(DotSummary, [DotCount] = MaxDots)
+    )
+
+-- Return name
+RETURN MAXX(TopDotBowler, ball_by_ball_data[bowler])
+"
+Measure,DotBall_Holder_Image,_Measures,"
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+VAR SeasonDots = 
+    FILTER(
+        ball_by_ball_data,
+        RELATED(ipl_matches_data[season]) = SelectedSeason &&
+        ball_by_ball_data[total_runs] = 0 &&
+        ball_by_ball_data[is_wide_ball] = FALSE() &&
+        ball_by_ball_data[is_no_ball] = FALSE() &&
+        ball_by_ball_data[is_leg_bye] = FALSE() &&
+        ball_by_ball_data[is_bye] = FALSE() &&
+        ball_by_ball_data[is_penalty] = FALSE()
+    )
+
+VAR DotSummary = 
+    SUMMARIZE(
+        SeasonDots,
+        ball_by_ball_data[bowler],
+        ""DotCount"", COUNTROWS(
+            FILTER(
+                SeasonDots,
+                ball_by_ball_data[bowler] = EARLIER(ball_by_ball_data[bowler])
+            )
+        )
+    )
+
+VAR MaxDots = MAXX(DotSummary, [DotCount])
+
+VAR TopDotBowler = 
+    CALCULATETABLE(
+        VALUES(ball_by_ball_data[bowler]),
+        FILTER(DotSummary, [DotCount] = MaxDots)
+    )
+
+RETURN
+LOOKUPVALUE(
+    players_data[player_image],
+    players_data[player_name],
+    MAXX(TopDotBowler, ball_by_ball_data[bowler])
+)
+"
+Measure,DotBall_Team,_Measures,"
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+VAR SeasonDots = 
+    FILTER(
+        ball_by_ball_data,
+        RELATED(ipl_matches_data[season]) = SelectedSeason &&
+        ball_by_ball_data[total_runs] = 0 &&
+        ball_by_ball_data[is_wide_ball] = FALSE() &&
+        ball_by_ball_data[is_no_ball] = FALSE() &&
+        ball_by_ball_data[is_leg_bye] = FALSE() &&
+        ball_by_ball_data[is_bye] = FALSE() &&
+        ball_by_ball_data[is_penalty] = FALSE()
+    )
+
+VAR DotSummary = 
+    ADDCOLUMNS(
+        SUMMARIZE(
+            SeasonDots,
+            ball_by_ball_data[bowler],
+            ball_by_ball_data[team_bowling]
+        ),
+        ""DotCount"", COUNTROWS(
+            FILTER(
+                SeasonDots,
+                ball_by_ball_data[bowler] = EARLIER(ball_by_ball_data[bowler])
+            )
+        )
+    )
+
+VAR MaxDots = MAXX(DotSummary, [DotCount])
+
+RETURN 
+    MAXX(
+        FILTER(DotSummary, [DotCount] = MaxDots),
+        ball_by_ball_data[team_bowling]
+    )
+"
+Measure,Economy Rate,_Measures,"
+DIVIDE (
+    SUM (ball_by_ball_data[total_runs] ),
+    [Legal Balls Bowled] / 6
+)"
+Measure,Half_Centuries,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+VAR SeasonData = FILTER(ball_by_ball_data,RELATED(ipl_matches_data[season]) = SelectedSeason)
+
+VAR BatterRuns = SUMMARIZE(SeasonData,ball_by_ball_data[match_id],ball_by_ball_data[batter], ""TotalRuns"" , SUM(ball_by_ball_data[batter_runs]))
+
+VAR CenturyCount = FILTER(BatterRuns, [TotalRuns] >= 50 && [TotalRuns] <100)
+
+RETURN COUNTROWS(CenturyCount)"
+Measure,Last_Refresh,_Measures,"
+FORMAT(
+    FIRSTNONBLANK(RefreshTable[Refresh], ""None""),
+    ""dd-mmm @ hh:mm AM/PM""
+)"
+Measure,Legal Balls Bowled,_Measures,"
+COUNTROWS (
+    FILTER (
+        ball_by_ball_data,
+        ball_by_ball_data[is_wide_ball] = FALSE ()
+            && ball_by_ball_data[is_no_ball] = FALSE ()
+    )
+)"
+Measure,Orange Cap Holder,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+VAR SeasonDataOnly = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason)
+
+VAR RunSummary = SUMMARIZE (SeasonDataOnly,ball_by_ball_data [batter], ""Total Runs"", SUM(ball_by_ball_data[batter_runs]))
+
+VAR MaxRuns =  MAXX(RunSummary, [Total Runs])
+
+VAR TopScorer =CALCULATETABLE (VALUES (ball_by_ball_data[batter]), FILTER (RunSummary, [Total Runs] = MaxRuns))
+
+RETURN MAXX (TopScorer, ball_by_ball_data[batter])"
+Measure,Orange Cap Holder Image,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+VAR SeasonDataOnly = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason)
+
+VAR RunSummary = SUMMARIZE (SeasonDataOnly,ball_by_ball_data [batter], ""Total Runs"", SUM(ball_by_ball_data[batter_runs]))
+
+VAR MaxRuns =  MAXX(RunSummary, [Total Runs])
+
+VAR TopScorer =CALCULATETABLE (VALUES (ball_by_ball_data[batter]), FILTER (RunSummary, [Total Runs] = MaxRuns))
+
+RETURN 
+LOOKUPVALUE(players_data[player_image],players_data[player_name],MAXX(TopScorer, ball_by_ball_data[batter]))"
+Measure,Orange Cap Runs,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+VAR SeasonDataOnly = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason)
+
+VAR RunSummary = SUMMARIZE (SeasonDataOnly,ball_by_ball_data [batter], ""Total Runs"", SUM(ball_by_ball_data[batter_runs]))
+
+VAR MaxRuns =  MAXX(RunSummary, [Total Runs])
+
+RETURN MaxRuns"
+Measure,Orange cap Team Name,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season])
+
+VAR SeasonDataOnly = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason)
+
+VAR RunSummary = SUMMARIZE (SeasonDataOnly,ball_by_ball_data [batter], ""Total Runs"", SUM(ball_by_ball_data[batter_runs]))
+
+VAR MaxRuns =  MAXX(RunSummary, [Total Runs])
+
+VAR TopScorer =CALCULATETABLE (VALUES (ball_by_ball_data[batter]), FILTER (RunSummary, [Total Runs] = MaxRuns))
+
+VAR FullTeamName = CALCULATE(MAX(ball_by_ball_data[team_batting]), FILTER(SeasonDataOnly,ball_by_ball_data[batter] = MAXX(TopScorer,ball_by_ball_data[batter])))
+
+RETURN FullTeamName"
+Measure,Player_HTML_Card,Players,"
+VAR SelectedPlayer = SELECTEDVALUE(Players[PlayerName])
+VAR SelectedImage = 
+    CALCULATE(
+        MAX(Players[PlayerIMG]),
+        FILTER(Players, Players[PlayerName] = SelectedPlayer)
+    )
+VAR SelectedName = 
+    CALCULATE(
+        MAX(Players[PlayerName]),
+        FILTER(Players, Players[PlayerName] = SelectedPlayer)
+    )
+VAR SelectedIsCaptain = 
+    CALCULATE(
+        MAX(Players[Cap]),
+        FILTER(Players, Players[PlayerName] = SelectedPlayer)
+    )
+
+-- Captain fallback values
+VAR CaptainImage = 
+    CALCULATE(
+        MAX(Players[PlayerIMG]),
+        FILTER(Players, Players[Cap] = ""Captain"")
+    )
+VAR CaptainName = 
+    CALCULATE(
+        MAX(Players[PlayerName]),
+        FILTER(Players, Players[Cap] = ""Captain"")
+    )
+
+-- Final resolved values
+VAR FinalImage = IF(ISBLANK(SelectedImage), CaptainImage, SelectedImage)
+VAR FinalName = IF(ISBLANK(SelectedName), CaptainName, SelectedName)
+VAR IsCaptain = IF(ISBLANK(SelectedPlayer), ""Captain"", SelectedIsCaptain)
+
+-- Header Label: ""Captain"" or ""Player""
+VAR HeaderLabel = IF(IsCaptain = ""Captain"", ""Captain"", ""Player"")
+
+RETURN
+""<div style='width:auto; height:auto; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:""""Segoe UI"""", sans-serif; padding:5px;'>
+    <div style='font-size:18px; font-family:""""Segoe UI"""", sans-serif; font-weight:bold; color:#005A9C; margin-bottom:0px; text-transform:uppercase;'>"" & HeaderLabel & ""</div>
+    <img src='"" & FinalImage & ""' style='width:200px; height:auto; margin-bottom:2px;'>
+    <div style='font-size:16px; font-family:""""Segoe UI"""", sans-serif; font-weight:600; color:#222; text-align:center;'>"" & FinalName & ""</div>
+</div>""
+"
+Measure,Purple Cap Team,_Measures,"
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data[season])
+
+-- Step 1: Filter valid bowler wickets in selected season
+VAR SeasonWickets  =
+    FILTER(
+        ball_by_ball_data,
+        RELATED (ipl_matches_data[season]) = SelectedSeason &&
+        ball_by_ball_data[is_wicket] = TRUE() &&
+        NOT ball_by_ball_data[wicket_kind] IN {""run out"", ""retired hurt"", ""retired out"", ""obstructing the field""}
+    )
+
+-- Step 2: Summarize wickets per bowler
+ VAR WicketSummary =
+    ADDCOLUMNS(
+        SUMMARIZE(
+        SeasonWickets,
+        ball_by_ball_data[bowler],
+        ball_by_ball_data[team_bowling]
+        ),
+        ""WicketCount"", 
+        COUNTROWS(
+            FILTER(
+                SeasonWickets,
+                ball_by_ball_data[bowler] = EARLIER(ball_by_ball_data[bowler])
+            )
+        )
+    )
+
+ --  Step 3: Get the highest wicket count
+ VAR MaxWickets = MAXX(WicketSummary, [WicketCount])
+
+ -- Step 4: Return full team name of the top wicket-taker
+ RETURN
+    MAXX(
+        FILTER(WicketSummary, [WicketCount] =MaxWickets),ball_by_ball_data[team_bowling]
+        
+    )
+"
+Measure,Purple Cap_Holder,_Measures,"
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data[season])
+
+--Filter: wickets in selected season, exclude non-bowler dismissals
+VAR Seasonwickets = 
+FILTER(
+    ball_by_ball_data,
+    RELATED (ipl_matches_data[season]) = SelectedSeason &&
+    ball_by_ball_data[is_wicket] = TRUE() && 
+    NOT ball_by_ball_data[wicket_kind] IN { ""run out"", ""retired hurt"", ""obstructing the field"", ""retired out""}
+)
+
+-- Summarize bowler and count wickets
+ VAR WicketSummary =
+ SUMMARIZE(
+        SeasonWickets,
+        ball_by_ball_data[bowler],
+        ""WicketCount"", COUNTROWS(
+            FILTER (SeasonWickets, ball_by_ball_data[bowler] = EARLIER(ball_by_ball_data[bowler]))
+    )
+ )
+-- Find highest wicket count
+ VAR MaxWickets = MAXX(WicketSummary, [WicketCount])
+
+-- Get the bowler(s) with that wicket count
+VAR TopBowler =
+        CALCULATETABLE(
+            VALUES(ball_by_ball_data[bowler]),
+            FILTER (WicketSummary, [WicketCount] = MaxWickets)
+)
+
+--Return the name (if multiple, it picks one alaphabetically) using lookup from player table
+RETURN
+MAXX(TopBowler,ball_by_ball_data[bowler]
+)"
+Measure,Purple Cap_Holder image,_Measures,"
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data[season])
+
+--Filter: wickets in selected season, exclude non-bowler dismissals
+VAR Seasonwickets = 
+FILTER(
+    ball_by_ball_data,
+    RELATED (ipl_matches_data[season]) = SelectedSeason &&
+    ball_by_ball_data[is_wicket] = TRUE() && 
+    NOT ball_by_ball_data[wicket_kind] IN { ""run out"", ""retired hurt"", ""obstructing the field"", ""retired out""}
+)
+
+-- Summarize bowler and count wickets
+ VAR WicketSummary =
+ SUMMARIZE(
+        SeasonWickets,
+        ball_by_ball_data[bowler],
+        ""WicketCount"", COUNTROWS(
+            FILTER (SeasonWickets, ball_by_ball_data[bowler] = EARLIER(ball_by_ball_data[bowler]))
+    )
+ )
+-- Find highest wicket count
+ VAR MaxWickets = MAXX(WicketSummary, [WicketCount])
+
+-- Get the bowler(s) with that wicket count
+VAR TopBowler =
+        CALCULATETABLE(
+            VALUES(ball_by_ball_data[bowler]),
+            FILTER (WicketSummary, [WicketCount] = MaxWickets)
+)
+
+--Return the image using lookup from player table
+RETURN
+LOOKUPVALUE(
+    players_data[player_image],
+    players_data[player_name],
+    MAXX(TopBowler, ball_by_ball_data[bowler])
+)"
+Measure,PurpleCapWicketCount,_Measures,"
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data[season])
+
+-- Step 1: Filter valid bowler wickets in selected season
+VAR SeasonWickets  =
+    FILTER(
+        ball_by_ball_data,
+        RELATED (ipl_matches_data[season]) = SelectedSeason &&
+        ball_by_ball_data[is_wicket] = TRUE() &&
+        NOT ball_by_ball_data[wicket_kind] IN {""run out"", ""retired hurt"", ""retired out"", ""obstructing the field""}
+    )
+
+-- Step 2: Summarize wickets per bowler
+ VAR WicketSummary =
+    SUMMARIZE(
+        SeasonWickets,
+        ball_by_ball_data[bowler],
+        ""WicketCount"", COUNTROWS(
+            FILTER(
+                SeasonWickets,
+                ball_by_ball_data[bowler] = EARLIER(ball_by_ball_data[bowler])
+            )
+        )
+    )
+
+ --  Step 3: Get the highest wicket count
+ VAR MaxWickets = MAXX(WicketSummary, [WicketCount])
+
+ RETURN
+ MaxWickets
+"
+Measure,Records_IMG,_Measures,"
+""
+<img src='"" & FIRSTNONBLANK(Records[IMG], """") & ""' 
+     alt='logo' 
+     style='width:280px; height:auto; margin:0; padding:0; display:block;' />
+"""
+Measure,Runner_UP,_Measures,"
+VAR SelectedSeason =  SELECTEDVALUE(ipl_matches_data[season])
+
+ VAR FinalMatchDate = CALCULATE(MAX(ipl_matches_data[match_date]),ipl_matches_data[season] = SelectedSeason)
+
+  VAR FinalMatchWinner = CALCULATE(MAX(ipl_matches_data[match_winner]),ipl_matches_data[season] = SelectedSeason,ipl_matches_data[match_date] = FinalMatchDate )
+
+
+  VAR Team1 = CALCULATE(MAX(ipl_matches_data[team1]),ipl_matches_data[season] = SelectedSeason,ipl_matches_data[match_date] = FinalMatchDate )
+
+  VAR Team2 = CALCULATE(MAX(ipl_matches_data[team2]),ipl_matches_data[season] = SelectedSeason,ipl_matches_data[match_date] = FinalMatchDate )
+
+  RETURN 
+  IF(FinalMatchWinner=Team1,Team2,Team1)"
+Measure,Runner_UP_LOGO,_Measures,"
+VAR SelectedSeason =  SELECTEDVALUE(ipl_matches_data[season])
+
+ VAR FinalMatchDate = CALCULATE(MAX(ipl_matches_data[match_date]),ipl_matches_data[season] = SelectedSeason)
+
+  VAR FinalMatchWinner = CALCULATE(MAX(ipl_matches_data[match_winner]),ipl_matches_data[season] = SelectedSeason,ipl_matches_data[match_date] = FinalMatchDate )
+
+
+  VAR Team1 = CALCULATE(MAX(ipl_matches_data[team1]),ipl_matches_data[season] = SelectedSeason,ipl_matches_data[match_date] = FinalMatchDate )
+
+  VAR Team2 = CALCULATE(MAX(ipl_matches_data[team2]),ipl_matches_data[season] = SelectedSeason,ipl_matches_data[match_date] = FinalMatchDate )
+
+  RETURN 
+ LOOKUPVALUE(teams_data[image_url],teams_data[team_name],[Runner_UP])"
+Measure,SeasonWinnerLink,_Measures,"
+VAR SelectedSeason = SELECTEDVALUE(ipl_matches_data[season_id])
+
+RETURN
+SWITCH(
+    SelectedSeason,
+    2025, ""https://www.hotstar.com/in/sports/cricket/rcb-vs-pbks-highlights-final/1540040398/video/highlights/watch"",
+    2024, ""https://www.hotstar.com/in/sports/cricket/final-kkr-vs-srh-highlights/1970974948/video/highlights/watch"",
+    2023, ""https://www.hotstar.com/in/sports/cricket/2023-csk-vs-gt-final-highlights/1970990656/video/highlights/watch"",
+    2022, ""https://www.hotstar.com/in/sports/cricket/2022-hardik-leads-gt-to-glory/1971302941/watch"",
+    2021, ""https://www.hotstar.com/in/sports/cricket/2021-csk-make-it-4-title-wins/1971302943/watch"",
+    2020, ""https://www.hotstar.com/in/sports/cricket/2020-mi-cruise-to-5th-title/1971302942/watch"",
+    2019, ""https://www.hotstar.com/in/sports/cricket/2019-mis-record-4th-title/1971302955/watch"",
+    2018, ""https://www.hotstar.com/in/sports/cricket/2018-csk-claim-3rd-crown/1971302944/watch"",
+    2017, ""https://www.hotstar.com/in/sports/cricket/2017-mi-clinch-3rd-title/1971302945/watch"",
+    2016, ""https://www.hotstar.com/in/sports/cricket/2016-srh-choke-rcb-in-final/1971302946/watch"",
+    2015, ""https://www.hotstar.com/in/sports/cricket/2015-mi-grab-2nd-title/1971302947/watch"",
+    2014, ""https://www.hotstar.com/in/sports/cricket/2014-kkr-claim-2nd-title/1971302948/watch"",
+    2013, ""https://www.hotstar.com/in/sports/cricket/2013-mi-secure-their-1st-cup/1971302949/watch"",
+    2012, ""https://www.hotstar.com/in/sports/cricket/2012-kkrs-maiden-title/1971302953/watch"",
+    2011, ""https://www.hotstar.com/in/sports/cricket/2011-csk-down-rcb-to-defend-title/1971302954/watch"",
+    2010, ""https://www.hotstar.com/in/sports/cricket/2010-csk-beat-mi-in-final/1971302952/watch"",
+    2009, ""https://www.hotstar.com/in/sports/cricket/2009-dc-pip-rcb-for-title/1971302951/watch"",
+    2008, ""https://www.hotstar.com/in/sports/cricket/2008-rr-lift-first-ever-cup/1971302950/watch""
+)"
+Measure,Seson_winner,_Measures,"
+VAR SelectedSeason =  SELECTEDVALUE(ipl_matches_data[season])
+
+ VAR FinalMatchDate = CALCULATE(MAX(ipl_matches_data[match_date]),ipl_matches_data[season] = SelectedSeason)
+
+  VAR FinalMatchWinner = CALCULATE(MAX(ipl_matches_data[match_winner]),ipl_matches_data[season] = SelectedSeason,ipl_matches_data[match_date] = FinalMatchDate )
+
+  RETURN FinalMatchWinner"
+Measure,Seson_winner_Logo,_Measures,"
+VAR SelectedSeason =  SELECTEDVALUE(ipl_matches_data[season])
+
+ VAR FinalMatchDate = CALCULATE(MAX(ipl_matches_data[match_date]),ipl_matches_data[season] = SelectedSeason)
+
+  VAR FinalMatchWinner = CALCULATE(MAX(ipl_matches_data[match_winner]),ipl_matches_data[season] = SelectedSeason,ipl_matches_data[match_date] = FinalMatchDate )
+
+  RETURN 
+  LOOKUPVALUE(teams_data[image_url],teams_data[team_name], FinalMatchWinner)"
+Measure,Top Fours Count,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data [season])
+VAR SeasonFours = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason &&ball_by_ball_data[batter_runs] = 4 )
+
+VAR FourSummary = SUMMARIZE (SeasonFours, ball_by_ball_data[batter], ""FoursCount"",COUNTROWS(FILTER (SeasonFours, ball_by_ball_data[batter] = EARLIER(ball_by_ball_data[batter]))))
+
+VAR MaxFours = MAXX(FourSummary, [FoursCount])
+RETURN MaxFours"
+Measure,Top Fours player Image,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data [season])
+VAR SeasonFours = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason &&ball_by_ball_data[batter_runs] = 4 )
+
+VAR FourSummary = SUMMARIZE (SeasonFours, ball_by_ball_data[batter], ""FoursCount"",COUNTROWS(FILTER (SeasonFours, ball_by_ball_data[batter] = EARLIER(ball_by_ball_data[batter]))))
+
+VAR MaxFours = MAXX(FourSummary, [FoursCount])
+VAR TopFoursPlayer = CALCULATETABLE (VALUES (ball_by_ball_data[batter]),FILTER (FourSummary, [FoursCount] = MaxFours))
+RETURN 
+LOOKUPVALUE(
+    players_data[player_image],
+    players_data[player_name], MAXX(TopFoursPlayer, ball_by_ball_data[batter])
+)"
+Measure,Top Fours Player Name,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data [season])
+VAR SeasonFours = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason &&ball_by_ball_data[batter_runs] = 4 )
+
+VAR FourSummary = SUMMARIZE (SeasonFours, ball_by_ball_data[batter], ""FoursCount"",COUNTROWS(FILTER (SeasonFours, ball_by_ball_data[batter] = EARLIER(ball_by_ball_data[batter]))))
+
+VAR MaxFours = MAXX(FourSummary, [FoursCount])
+VAR TopFoursPlayer = CALCULATETABLE (VALUES (ball_by_ball_data[batter]),FILTER (FourSummary, [FoursCount] = MaxFours))
+RETURN MAXX(TopFoursPlayer, ball_by_ball_data[batter])"
+Measure,Top Fours player Team  Name,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data [season])
+VAR SeasonFours = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason &&ball_by_ball_data[batter_runs] = 4 )
+
+VAR FourSummary = SUMMARIZE (SeasonFours, ball_by_ball_data[batter], ""FoursCount"",COUNTROWS(FILTER (SeasonFours, ball_by_ball_data[batter] = EARLIER(ball_by_ball_data[batter]))))
+
+VAR MaxFours = MAXX(FourSummary, [FoursCount])
+VAR TopFoursPlayer = CALCULATETABLE (VALUES (ball_by_ball_data[batter]),FILTER (FourSummary, [FoursCount] = MaxFours))
+VAR BatterTeam = CALCULATE(MAX(ball_by_ball_data[team_batting]),FILTER(SeasonFours,ball_by_ball_data[batter] = MAXX(TopFoursPlayer,ball_by_ball_data[batter])))
+
+RETURN BatterTeam"
+Measure,Top Six Count,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data [season])
+VAR SeasonFours = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason &&ball_by_ball_data[batter_runs] = 6 )
+
+VAR FourSummary = SUMMARIZE (SeasonFours, ball_by_ball_data[batter], ""FoursCount"",COUNTROWS(FILTER (SeasonFours, ball_by_ball_data[batter] = EARLIER(ball_by_ball_data[batter]))))
+
+VAR MaxFours = MAXX(FourSummary, [FoursCount])
+RETURN MaxFours"
+Measure,Top Six player Image,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data [season])
+VAR SeasonFours = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason &&ball_by_ball_data[batter_runs] = 6 )
+
+VAR FourSummary = SUMMARIZE (SeasonFours, ball_by_ball_data[batter], ""FoursCount"",COUNTROWS(FILTER (SeasonFours, ball_by_ball_data[batter] = EARLIER(ball_by_ball_data[batter]))))
+
+VAR MaxFours = MAXX(FourSummary, [FoursCount])
+VAR TopFoursPlayer = CALCULATETABLE (VALUES (ball_by_ball_data[batter]),FILTER (FourSummary, [FoursCount] = MaxFours))
+RETURN 
+LOOKUPVALUE(
+    players_data[player_image],
+    players_data[player_name], MAXX(TopFoursPlayer, ball_by_ball_data[batter])
+)"
+Measure,Top Six Player Name,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data [season])
+VAR SeasonFours = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason &&ball_by_ball_data[batter_runs] = 6 )
+
+VAR FourSummary = SUMMARIZE (SeasonFours, ball_by_ball_data[batter], ""FoursCount"",COUNTROWS(FILTER (SeasonFours, ball_by_ball_data[batter] = EARLIER(ball_by_ball_data[batter]))))
+
+VAR MaxFours = MAXX(FourSummary, [FoursCount])
+VAR TopFoursPlayer = CALCULATETABLE (VALUES (ball_by_ball_data[batter]),FILTER (FourSummary, [FoursCount] = MaxFours))
+RETURN MAXX(TopFoursPlayer, ball_by_ball_data[batter])"
+Measure,Top Six player Team  Name,_Measures,"
+
+VAR SelectedSeason = SELECTEDVALUE (ipl_matches_data [season])
+VAR SeasonFours = FILTER(ball_by_ball_data, RELATED (ipl_matches_data[season]) = SelectedSeason &&ball_by_ball_data[batter_runs] = 6 )
+
+VAR FourSummary = SUMMARIZE (SeasonFours, ball_by_ball_data[batter], ""FoursCount"",COUNTROWS(FILTER (SeasonFours, ball_by_ball_data[batter] = EARLIER(ball_by_ball_data[batter]))))
+
+VAR MaxFours = MAXX(FourSummary, [FoursCount])
+VAR TopFoursPlayer = CALCULATETABLE (VALUES (ball_by_ball_data[batter]),FILTER (FourSummary, [FoursCount] = MaxFours))
+VAR BatterTeam = CALCULATE(MAX(ball_by_ball_data[team_batting]),FILTER(SeasonFours,ball_by_ball_data[batter] = MAXX(TopFoursPlayer,ball_by_ball_data[batter])))
+
+RETURN BatterTeam"
+Measure,Total 4's,_Measures,"
+CALCULATE(COUNTROWS(ball_by_ball_data),ball_by_ball_data[batter_runs] = 4,KEEPFILTERS(VALUES(ipl_matches_data[season])))"
+Measure,Total 6's,_Measures,"
+CALCULATE(COUNTROWS(ball_by_ball_data),ball_by_ball_data[batter_runs] = 6,KEEPFILTERS(VALUES(ipl_matches_data[season])))"
+Measure,Total Venue,_Measures,CALCULATE(DISTINCTCOUNT(ipl_matches_data[venue]))
+Measure,Total_matches,_Measures,CALCULATE(DISTINCTCOUNT(ipl_matches_data[match_id]))
+Measure,Total_Teams,_Measures,CALCULATE(DISTINCTCOUNT(ipl_matches_data[team1]))
+Measure,WatchHighlightsBtn123,_Measures,"
+VAR BtnURL = [SeasonWinnerLink]
+RETURN
+""<div style='text-align:center;'>
+<style>
+.watch-btn {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 14px;
+    border-radius:10px;
+    text-decoration:none;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    font-weight:600;
+    font-size:14px;
+    background:linear-gradient(90deg,#1797FF 0%,#7A4BFF 55%,#FF2A8A 100%);
+    box-shadow:0 5px 15px rgba(17,135,255,0.18);
+    transition:transform 150ms ease, box-shadow 150ms ease, filter 150ms ease, color 150ms ease;
+}
+.watch-btn__icon {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:26px;
+    height:26px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.12);
+}
+.watch-btn__icon svg {
+    display:block;
+    transition:fill 150ms ease;
+}
+.watch-btn:hover {
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(17,135,255,0.2);
+    filter:saturate(1.02);
+    color:black;
+}
+.watch-btn:hover .watch-btn__icon svg {
+    fill:black;
+}
+</style>
+<a class='watch-btn' href='"" & BtnURL & ""' target='_blank'>
+    <span class='watch-btn__icon'>
+        <svg viewBox='0 0 24 24' width='14' height='14' fill='white' xmlns='http://www.w3.org/2000/svg'>
+            <path d='M8 5v14l11-7L8 5z'/>
+        </svg>
+    </span>
+    <span>Watch Highlights</span>
+</a>
+</div>""
+"
+Relationship,'2025_batters'[Name] 1[<->]1 'Players'[PlayerName],,'2025_batters'[Name] 1[<->]1 'Players'[PlayerName]
+Relationship,'2025_bowlers'[Name] 1[<->]1 'Players'[PlayerName],,'2025_bowlers'[Name] 1[<->]1 'Players'[PlayerName]
+Relationship,'2025_captains'[Captains] 1[<->]1 'Players'[PlayerName],,'2025_captains'[Captains] 1[<->]1 'Players'[PlayerName]
+Relationship,'2025_captains'[Team] 1[<->]1 'Team_Wins'[Team],,'2025_captains'[Team] 1[<->]1 'Team_Wins'[Team]
+Relationship,'All_Matches_Score'[apikey] *[<-]1 'All_Matches_Score_BASE_API'[apikey],,'All_Matches_Score'[apikey] *[<-]1 'All_Matches_Score_BASE_API'[apikey]
+Relationship,'All_Matches_Score'[dateTimeGMT] *[<-]1 'LocalDateTable_4cc6b14e-ec46-4a03-a94e-7859ad6c04ec'[Date],,'All_Matches_Score'[dateTimeGMT] *[<-]1 'LocalDateTable_4cc6b14e-ec46-4a03-a94e-7859ad6c04ec'[Date]
+Relationship,'ball_by_ball_data'[match_id] *[<-]1 'ipl_matches_data'[match_id],,'ball_by_ball_data'[match_id] *[<-]1 'ipl_matches_data'[match_id]
+Relationship,'bbb_bowler'[match_id] *[<-]1 'ipl_matches_data'[match_id],,'bbb_bowler'[match_id] *[<-]1 'ipl_matches_data'[match_id]
+Relationship,'Best bowl Avg'[Type] *[<-]1 'Records'[Type],,'Best bowl Avg'[Type] *[<-]1 'Records'[Type]
+Relationship,'BestBowling_Figure'[Date] *[<-]1 'LocalDateTable_d8a2ba32-08db-41a7-8b99-844c302a99db'[Date],,'BestBowling_Figure'[Date] *[<-]1 'LocalDateTable_d8a2ba32-08db-41a7-8b99-844c302a99db'[Date]
+Relationship,'BestBowling_Figure'[Type] *[<-]1 'Records'[Type],,'BestBowling_Figure'[Type] *[<-]1 'Records'[Type]
+Relationship,'BestEco'[Type] *[<-]1 'Records'[Type],,'BestEco'[Type] *[<-]1 'Records'[Type]
+Relationship,'Fast100'[Date] *[<-]1 'LocalDateTable_ca539131-99ff-43d8-aed0-7ce23b6470c1'[Date],,'Fast100'[Date] *[<-]1 'LocalDateTable_ca539131-99ff-43d8-aed0-7ce23b6470c1'[Date]
+Relationship,'Fast100'[Type] *[<-]1 'Records'[Type],,'Fast100'[Type] *[<-]1 'Records'[Type]
+Relationship,'Fast50'[Date] *[<-]1 'LocalDateTable_4172a2ee-d0a8-4c6a-a969-05257c6a8878'[Date],,'Fast50'[Date] *[<-]1 'LocalDateTable_4172a2ee-d0a8-4c6a-a969-05257c6a8878'[Date]
+Relationship,'Fast50'[Type] *[<-]1 'Records'[Type],,'Fast50'[Type] *[<-]1 'Records'[Type]
+Relationship,'HighestScore'[Type] *[<-]1 'Records'[Type],,'HighestScore'[Type] *[<-]1 'Records'[Type]
+Relationship,'ipl_matches_data'[city] *[<-]1 'teams_data'[team_name],,'ipl_matches_data'[city] *[<-]1 'teams_data'[team_name]
+Relationship,'ipl_matches_data'[match_date] *[<-]1 'LocalDateTable_b78e9b51-4fbf-4fa9-98b3-0ea56b5493b0'[Date],,'ipl_matches_data'[match_date] *[<-]1 'LocalDateTable_b78e9b51-4fbf-4fa9-98b3-0ea56b5493b0'[Date]
+Relationship,'ipl_matches_data'[match_number] *[<-]1 'Schedule'[match_number],,'ipl_matches_data'[match_number] *[<-]1 'Schedule'[match_number]
+Relationship,'ipl_matches_data'[player_of_match] *[<-]1 'players_data'[player_id],,'ipl_matches_data'[player_of_match] *[<-]1 'players_data'[player_id]
+Relationship,'ipl_matches_data'[season] *[<-]1 'HightLights'[season],,'ipl_matches_data'[season] *[<-]1 'HightLights'[season]
+Relationship,'ipl_matches_data'[season_id] *[<->]* 'Match_Schedule'[Season],,'ipl_matches_data'[season_id] *[<->]* 'Match_Schedule'[Season]
+Relationship,'ipl_matches_data'[team1] *[<-]1 'teams_data'[team_name],,'ipl_matches_data'[team1] *[<-]1 'teams_data'[team_name]
+Relationship,'ipl_matches_data'[team2] *[<-]1 'teams_data'[team_name],,'ipl_matches_data'[team2] *[<-]1 'teams_data'[team_name]
+Relationship,'Match_Schedule'[Season] *[<->]* 'Point_Table'[SEASON],,'Match_Schedule'[Season] *[<->]* 'Point_Table'[SEASON]
+Relationship,'Match_Schedule'[Team1] *[<-]1 'teams_data'[team_name],,'Match_Schedule'[Team1] *[<-]1 'teams_data'[team_name]
+Relationship,'MostDots'[Type] *[<-]1 'Records'[Type],,'MostDots'[Type] *[<-]1 'Records'[Type]
+Relationship,'MostFour'[Type] *[<-]1 'Records'[Type],,'MostFour'[Type] *[<-]1 'Records'[Type]
+Relationship,'MostRuns'[Type] *[<-]1 'Records'[Type],,'MostRuns'[Type] *[<-]1 'Records'[Type]
+Relationship,'MostSix'[Type] *[<-]1 'Records'[Type],,'MostSix'[Type] *[<-]1 'Records'[Type]
+Relationship,'MostWickets'[Type] *[<-]1 'Records'[Type],,'MostWickets'[Type] *[<-]1 'Records'[Type]
+Relationship,'Players'[Logo] *[<-]1 'Team_Wins'[Logo],,'Players'[Logo] *[<-]1 'Team_Wins'[Logo]
+Relationship,'Players'[PlayerName] 1[<->]1 '2025_batters'[Name],,'Players'[PlayerName] 1[<->]1 '2025_batters'[Name]
+Relationship,'Players'[PlayerName] 1[<->]1 '2025_bowlers'[Name],,'Players'[PlayerName] 1[<->]1 '2025_bowlers'[Name]
+Relationship,'Players'[PlayerName] 1[<->]1 '2025_captains'[Captains],,'Players'[PlayerName] 1[<->]1 '2025_captains'[Captains]
+Relationship,'Records'[Logo] *[<-]1 'Team_Wins'[Logo],,'Records'[Logo] *[<-]1 'Team_Wins'[Logo]
+Relationship,'RefreshTable'[Refresh] *[<-]1 'LocalDateTable_a03ec79e-598a-4b84-b266-833bc164f796'[Date],,'RefreshTable'[Refresh] *[<-]1 'LocalDateTable_a03ec79e-598a-4b84-b266-833bc164f796'[Date]
+Relationship,'Schedule'[Date] *[<-]1 'LocalDateTable_5b07b2e9-e2b6-4bec-b88e-83d03564b16e'[Date],,'Schedule'[Date] *[<-]1 'LocalDateTable_5b07b2e9-e2b6-4bec-b88e-83d03564b16e'[Date]
+Relationship,'Schedule'[dateTimeGMT] *[<-]1 'LocalDateTable_c9a8f274-9b41-40c7-af29-e08162b9d85a'[Date],,'Schedule'[dateTimeGMT] *[<-]1 'LocalDateTable_c9a8f274-9b41-40c7-af29-e08162b9d85a'[Date]
+Relationship,'Team_Wins'[Team] 1[<->]1 '2025_captains'[Team],,'Team_Wins'[Team] 1[<->]1 '2025_captains'[Team]
+Table,_Measures,,"Row(""Column"", BLANK())"
+Table,2025_batters,,
+Table,2025_bowlers,,
+Table,All_Matches_Score,,
+Table,ball_by_ball_data,,
+Table,HightLights,,
+Table,ipl_matches_data,,
+Table,Match_Schedule,,
+Table,Players,,
+Table,players_data,,
+Table,Point_Table,,
+Table,Records,,
+Table,RefreshTable,,
+Table,Schedule,,
+Table,Team_Wins,,
+Table,teams_data,,
