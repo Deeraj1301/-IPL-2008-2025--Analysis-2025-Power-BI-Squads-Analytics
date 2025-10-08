@@ -297,7 +297,7 @@ $\textsf{\color{blue}{Power BI: View Created Dax Measures, Columns, Tables âž¡ï¸
 
 **Overview IPL KPI's**
 
-Some measures are provide here If You want more Download the Excel File Above [Click Here]
+Some measures are provide here If You want more Download the Excel File Above [Click Here](
 
 ```
 Total_matches = CALCULATE(DISTINCTCOUNT(ipl_matches_data[match_id]))
